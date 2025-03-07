@@ -89,4 +89,108 @@ export default function ClientComponent() {
 
 ### **1. Server-Side Rendering (SSR)**
 ```tsx
-export async function getServerSideProp
+export async function getServerSideProps() {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+  return { props: { data } };
+}
+export default function Page({ data }) {
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
+```
+
+### **2. Static Site Generation (SSG)**
+```tsx
+export async function getStaticProps() {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+  return { props: { data }, revalidate: 10 };
+}
+```
+
+---
+
+## 📡 API Routes
+Create serverless API endpoints inside `pages/api`.
+
+```tsx
+// pages/api/hello.ts
+export default function handler(req, res) {
+  res.status(200).json({ message: 'Hello, Next.js!' });
+}
+```
+Access at `/api/hello`.
+
+---
+
+## 🔒 Middleware
+Middleware runs before a request is completed.
+
+```tsx
+// middleware.ts
+import { NextResponse } from 'next/server';
+export function middleware(req) {
+  if (!req.cookies.auth) {
+    return NextResponse.redirect('/login');
+  }
+  return NextResponse.next();
+}
+```
+
+---
+
+## 🔑 Authentication
+Using **NextAuth.js** for authentication.
+
+```tsx
+// pages/api/auth/[...nextauth].ts
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
+export default NextAuth({
+  providers: [Providers.GitHub({ clientId: '', clientSecret: '' })],
+});
+```
+
+---
+
+## 🌍 Internationalization (i18n)
+
+Add to `next.config.js`:
+```js
+module.exports = {
+  i18n: {
+    locales: ['en', 'fr'],
+    defaultLocale: 'en',
+  },
+};
+```
+
+---
+
+## 🚀 Performance Optimization
+- **Lazy Loading Components**
+```tsx
+import dynamic from 'next/dynamic';
+const HeavyComponent = dynamic(() => import('../components/HeavyComponent'));
+```
+
+- **Optimized Images**
+```tsx
+import Image from 'next/image';
+<Image src='/image.jpg' width={500} height={300} alt='Optimized Image' />;
+```
+
+---
+
+## ☁️ Deployment
+Deploy on **Vercel**:
+```sh
+vercel
+```
+Or on **Netlify, AWS, DigitalOcean** using `next build` and `next start`.
+
+---
+
+## 📜 Conclusion
+This README provides an overview of Next.js with examples and best practices. For more details, visit the [Next.js Docs](https://nextjs.org/docs).
+
