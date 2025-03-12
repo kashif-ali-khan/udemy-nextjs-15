@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
-    default: "Auth",
+    absolute: "Auth",
   },
 };
 const LoginPage = () => {

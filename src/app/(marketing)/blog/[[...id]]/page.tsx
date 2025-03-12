@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
-    default: "Blog page",
+    absolute: "Blog page",
   },
 };
 

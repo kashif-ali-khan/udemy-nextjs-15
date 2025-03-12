@@ -8,7 +8,7 @@ const ProductsPage = () => {
       <ul className="flex flex-col w-auto space-x-4 text-white bg-blue-500 p-2 rounded-lg">
         {products.map((product) => (
           <li className=" cursor-pointer w-100 px-4 py-2 mb-2 bg-blue-700 rounded-md hover:bg-blue-400" key={product}>
-            <Link href={`/products/${product}`} replace>Product {product}</Link>
+            <Link href={`/products/${product}`}>Product {product}</Link>
           </li>
         ))}
       </ul>

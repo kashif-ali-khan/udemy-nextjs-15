@@ -2,6 +2,7 @@ import React from "react";
 import "@/app/globals.css";
 
 import { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   title: {
     default: "Home from Next",
@@ -10,14 +11,12 @@ export const metadata: Metadata = {
   },
 };
 const NormalLayout = ({ children }: { children: React.ReactNode }) => {
-
   return (
-    <html lang="en">
-      <body>
-        {children}
-
-      </body>
-    </html>
+    <ThemeProvider>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </ThemeProvider>
   );
 };
 
